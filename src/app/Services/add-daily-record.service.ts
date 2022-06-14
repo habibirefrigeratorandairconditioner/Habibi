@@ -9,6 +9,6 @@ export class AddDailyRecordService {
   constructor(private http:HttpClient) { }
 
   saveDailyRecordDataToDB(data:any){
-    return this.http.post(environment.apiURL+"addDailyRecordData",data);
+    return this.http.post(environment.apiURL+"/addDailyRecordData",data);
   }
 }
