@@ -1,0 +1,86 @@
+<div class="container mt-3">
+    <div class="card mb-4">
+    <div class="card-header bg-primary text-white">Add daily record</div>
+    <form #addRecord="ngForm" (ngSubmit)="addData(addRecord.value)">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" [(ngModel)]="cValue" name="date" required/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Service Type</label>
+                        <select ngModel class="form-control" name="serviceType" required>
+                            <option value="">Please select service type</option>
+                            <option value="AC">AC</option>
+                            <option value="Refrigerator">Refrigerator</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>   
+            </div>    
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Service Description</label>
+                        <textarea ngModel name="serviceDescription" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Service Fee</label>
+                        <input ngModel type="number" name="serviceFee" (keyup)="serviceFee($event)" class="form-control" required/>
+                    </div>
+                </div>   
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Fee Paid</label>
+                        <input ngModel type="number" name="feePaid" (keyup)="feePaid($event)" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Remaining Fee</label>
+                        <input ngModel type="number" name="remainingFee" class="form-control" [value]="remainingfee" disabled/>
+                    </div>
+                </div>   
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input ngModel type="text" name="customerName" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Customer Address</label>
+                        <textarea ngModel class="form-control" name="customerAddress" rows="2"></textarea>
+                    </div>
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Customer Phone Number</label>
+                        <input ngModel type="phone" name="phoneNumber" class="form-control"/>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">Add Record</button>
+        </div>
+    </form>
+    <div *ngIf="Message.statusCode==200;then ifBlock else elseBlock">
+        
+    </div>
+    <ng-template #ifBlock><h5 class="text-center text-success mt-2 mb-2">Data Saved Successfully!</h5></ng-template>
+    <ng-template #elseBlock><h5 class="text-center text-danger mt-2 mb-2">Something went wrong!</h5></ng-template>
+    </div>
+</div>
