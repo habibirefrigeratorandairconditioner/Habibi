@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DailyRecordComponent } from './daily-record/daily-record.component';
 import { AllRecordsComponent } from './all-records/all-records.component';
 import {HttpClientModule} from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

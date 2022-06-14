@@ -1,7 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {AddDailyRecordService} from '../Services/add-daily-record.service';
-
+import { SpinnerVisibilityService } from 'ng-http-loader';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-daily-record',
   templateUrl: './daily-record.component.html',
@@ -9,7 +10,7 @@ import {AddDailyRecordService} from '../Services/add-daily-record.service';
 })
 export class DailyRecordComponent implements OnInit {
 
-  constructor(private adddailyrecordservice:AddDailyRecordService) { }
+  constructor(private adddailyrecordservice:AddDailyRecordService,private spinner: SpinnerVisibilityService) { }
   currentDate = new Date();
   cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
   ngOnInit(): void {
@@ -24,10 +25,11 @@ export class DailyRecordComponent implements OnInit {
     this.servicefee=fee.target.value;
     this.remainingfee=fee.target.value;
   }
-  addData(data:any){
+  addData(data:any,form:NgForm){
     this.adddailyrecordservice.saveDailyRecordDataToDB(data).subscribe((res)=>{
       console.warn(res);
       this.Message=res;
+      form.resetForm();
     });
   }
 }

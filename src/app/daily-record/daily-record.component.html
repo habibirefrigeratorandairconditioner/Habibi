@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <div class="card mb-4">
     <div class="card-header bg-primary text-white">Add daily record</div>
-    <form #addRecord="ngForm" (ngSubmit)="addData(addRecord.value)">
+    <form #addRecord="ngForm" (ngSubmit)="addData(addRecord.value,addRecord);">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -77,6 +77,7 @@
             <button class="btn btn-primary">Add Record</button>
         </div>
     </form>
+    <ng-http-loader></ng-http-loader>
     <div *ngIf="Message.statusCode==200;then ifBlock else elseBlock">
         
     </div>
