@@ -1,1 +1,40 @@
-<p>all-records works!</p>
+<div class="container mt-4">
+    <table class="table table-striped table-bordered table-hover table-responsive">
+        <thead>
+            <td>Date</td>
+            <td>Service Type</td>
+            <td>Service Description</td>
+            <td>Service Fee</td>
+            <td>Fee Paid</td>
+            <td>Remaining Fee</td>
+            <td>Customer Name</td>
+            <td>Customer Address</td>
+            <td>Customer Phone Number</td>
+        </thead>
+        <tbody *ngFor="let data of allData">
+            <tr>
+                <td>{{data.date}}</td>
+                <td>{{data.serviceType}}</td>
+                <td>{{data.serviceDescription}}</td>
+                <td>{{data.serviceFee}}</td>
+                <td>{{data.feePaid}}</td>
+                <td>{{data.remainingFee}}</td>
+                <td>{{data.customerName}}</td>
+                <td>{{data.customerAddress}}</td>
+                <td>{{data.phoneNumber}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td>Date</td>
+            <td>Service Type</td>
+            <td>Service Description</td>
+            <td>Service Fee</td>
+            <td>Fee Paid</td>
+            <td>Remaining Fee</td>
+            <td>Customer Name</td>
+            <td>Customer Address</td>
+            <td>Customer Phone Number</td>
+        </tfoot>
+    </table>
+    
+</div>

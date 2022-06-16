@@ -17,15 +17,16 @@ export class DailyRecordComponent implements OnInit {
   }
   Message:any;
   servicefee:any;
-  remainingfee:any;
+  remainingfeepayable:any;
   feePaid(x:any){
-    this.remainingfee=this.servicefee-x.target.value;
+    this.remainingfeepayable=this.servicefee-x.target.value;
   }
   serviceFee(fee:any){
     this.servicefee=fee.target.value;
-    this.remainingfee=fee.target.value;
-  }
+    this.remainingfeepayable=fee.target.value;
+  }disabled:any=true;
   addData(data:any,form:NgForm){
+    console.log(data);
     this.adddailyrecordservice.saveDailyRecordDataToDB(data).subscribe((res)=>{
       console.warn(res);
       this.Message=res;
