@@ -1,0 +1,87 @@
+<div class="container mt-4">
+    <table class="table table-striped table-bordered table-hover table-responsive">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Date</td>
+            <td>Service Type</td>
+            <td>Service Description</td>
+            <td>Service Fee</td>
+            <td>Fee Paid</td>
+            <td>Remaining Fee</td>
+            <td>Customer Name</td>
+            <td>Customer Address</td>
+            <td>Customer Phone Number</td>
+            <td>Add Amount</td>
+        </tr>
+        <tr *ngIf="allData.length<=0">
+            <td colspan="11" class="text-center">No any data</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let data of allData;let indexOfelement=index;">
+            <tr>
+                <td>{{indexOfelement+1}}</td>
+                <td>{{data.date | date:'short':'IST'}}</td>
+                <td>{{data.serviceType}}</td>
+                <td>{{data.serviceDescription}}</td>
+                <td>{{data.serviceFee}}</td>
+                <td>{{data.feePaid}}</td>
+                <td>{{data.remainingFee}}</td>
+                <td>{{data.customerName}}</td>
+                <td>{{data.customerAddress}}</td>
+                <td>{{data.phoneNumber}}</td>
+                <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getRemainingBalance(data.remainingFee,data._id)">Pay</button></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+            <td>Id</td>
+            <td>Date</td>
+            <td>Service Type</td>
+            <td>Service Description</td>
+            <td>Service Fee</td>
+            <td>Fee Paid</td>
+            <td>Remaining Fee</td>
+            <td>Customer Name</td>
+            <td>Customer Address</td>
+            <td>Customer Phone Number</td>
+            <td>Amount</td>
+        </tr>
+        </tfoot>
+    </table>
+    <ng-http-loader></ng-http-loader>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="post" #addRecord="ngForm" (ngSubmit)="updateRemainingFee(addRecord.value);">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Remaining Fee</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" [(ngModel)]="id" name="id"/>
+              <div class="form-group">
+                  <label>Remaining Fee Amount - {{remainingBalance}}</label>
+                  <input type="number" ngModel name="remaining_fee" [max]="remainingBalance" class="form-control" required="true"/>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="modalhide" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-primary" value="Save"/>
+            </div> 
+          </div>
+        </form>
+        </div>
+      </div>
+</div>
+
+<script>
+    $(function() {
+        $('#modalhide').click(function() {
+        $('#exampleModal').modal('hide');
+    });
+});
+
+</script>

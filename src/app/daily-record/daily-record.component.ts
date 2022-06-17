@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {AddDailyRecordService} from '../Services/add-daily-record.service';
 import { SpinnerVisibilityService } from 'ng-http-loader';
@@ -10,9 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class DailyRecordComponent implements OnInit {
 
-  constructor(private adddailyrecordservice:AddDailyRecordService,private spinner: SpinnerVisibilityService) { }
-  currentDate = new Date();
-  cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
+  constructor(private adddailyrecordservice:AddDailyRecordService) { }
   ngOnInit(): void {
   }
   Message:any;

@@ -9,17 +9,23 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { RemainingFeeRecordComponent } from './remaining-fee-record/remaining-fee-record.component';
 @NgModule({
   declarations: [
     AppComponent,
     DailyRecordComponent,
-    AllRecordsComponent
+    AllRecordsComponent,
+    RemainingFeeRecordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), 
     NgHttpLoaderModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
