@@ -1,4 +1,11 @@
 <div class="container mt-4">
+  <div class="mr-0 mb-2" >
+    <form [formGroup]="searchRecord" (ngSubmit)="searchRecords(searchRecord.value);">
+    <input type="text" formControlName="search_text"/>
+    <span style="color: red;" *ngIf="search_text && search_text.invalid && search_text.touched">This field is required</span>
+    <button class="btn btn-primary btn-sm ml-2">Search</button>
+</form>
+</div>
     <table class="table table-striped table-bordered table-hover table-responsive">
         <thead>
         <tr>

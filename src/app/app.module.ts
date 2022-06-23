@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RemainingFeeRecordComponent } from './remaining-fee-record/remaining-fee-record.component';
@@ -26,6 +27,7 @@ import { RemainingFeeRecordComponent } from './remaining-fee-record/remaining-fe
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), 
+    ReactiveFormsModule,
     NgHttpLoaderModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

@@ -1,24 +1,26 @@
 <div class="container mt-3">
     <div class="card mb-4">
     <div class="card-header bg-primary text-white">Add daily record</div>
-    <form #addRecord="ngForm" (ngSubmit)="addData(addRecord.value,addRecord);">
+    <form [formGroup]="addRecord" (ngSubmit)="addData(addRecord.value);">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="datetime-local" class="form-control" ngModel name="date" required/>
+                        <input type="datetime-local" class="form-control" formControlName="date" required/>
+                        <span style="color: red;" *ngIf="date && date.invalid && date.touched">This field is required</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Service Type</label>
-                        <select ngModel class="form-control" name="serviceType" required>
+                        <select class="form-control" formControlName="serviceType" required>
                             <option value="">Please select service type</option>
                             <option value="AC">AC</option>
                             <option value="Refrigerator">Refrigerator</option>
                             <option value="Other">Other</option>
                         </select>
+                        <span style="color: red;" *ngIf="serviceType && serviceType.invalid && serviceType.touched">This field is required</span>
                     </div>
                 </div>   
             </div>    
@@ -26,13 +28,15 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Service Description</label>
-                        <textarea ngModel name="serviceDescription" class="form-control" rows="2"></textarea>
+                        <textarea formControlName="serviceDescription" class="form-control" rows="2"></textarea>
+                        <span style="color: red;" *ngIf="serviceDescription && serviceDescription.invalid && serviceDescription.touched">This field is required</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Service Fee</label>
-                        <input ngModel type="number" name="serviceFee" (keyup)="serviceFee($event)" class="form-control" required/>
+                        <input type="number" formControlName="serviceFee" (keyup)="serviceFees($event)" class="form-control" required/>
+                        <span style="color: red;" *ngIf="serviceFee && serviceFee.invalid && serviceFee.touched">This field is required</span>
                     </div>
                 </div>   
             </div> 
@@ -40,13 +44,15 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Fee Paid</label>
-                        <input ngModel type="number" name="feePaid" (keyup)="feePaid($event)" class="form-control" required/>
+                        <input type="number" formControlName="feePaid" (keyup)="feePaids($event)" class="form-control" required/>
+                        <span style="color: red;" *ngIf="feePaid && feePaid.invalid && feePaid.touched">This field is required</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Remaining Fee</label>
-                        <input ngModel type="number" name="remainingFee" class="form-control" [value]="remainingfeepayable" disabled/>
+                        <input type="number" formControlName="remainingFee" class="form-control" [value]="remainingfeepayable" [disabled]="true"/>
+                        <span style="color: red;" *ngIf="remainingFee && remainingFee.invalid && remainingFee.touched">This field is required</span>
                     </div>
                 </div>   
             </div> 
@@ -54,13 +60,15 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Customer Name</label>
-                        <input ngModel type="text" name="customerName" class="form-control"/>
+                        <input type="text" formControlName="customerName" class="form-control"/>
+                        <span style="color: red;" *ngIf="customerName && customerName.invalid && customerName.touched">This field is required</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Customer Address</label>
-                        <textarea ngModel class="form-control" name="customerAddress" rows="2"></textarea>
+                        <textarea class="form-control" formControlName="customerAddress" rows="2"></textarea>
+                        <span style="color: red;" *ngIf="customerAddress && customerAddress.invalid && customerAddress.touched">This field is required</span>
                     </div>
                 </div>   
             </div>
@@ -68,13 +76,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Customer Phone Number</label>
-                        <input ngModel type="phone" name="phoneNumber" class="form-control"/>
+                        <input type="phone" formControlName="phoneNumber" class="form-control"/>
+                        <span style="color: red;" *ngIf="phoneNumber && phoneNumber.invalid && phoneNumber.touched">This field not valid</span>
                     </div>
                 </div> 
             </div> 
         </div>
         <div class="card-footer">
-            <button class="btn btn-primary">Add Record</button>
+            <button [disabled]="addRecord.invalid" class="btn btn-primary">Add Record</button>
         </div>
     </form>
     <ng-http-loader></ng-http-loader>

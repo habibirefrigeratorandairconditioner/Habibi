@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GetAllDailyDataService} from '../Services/get-all-daily-data.service';
 import { SpinnerVisibilityService } from 'ng-http-loader';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-all-records',
   templateUrl: './all-records.component.html',
@@ -17,6 +18,19 @@ export class AllRecordsComponent implements OnInit {
       console.warn(data);
       this.allData=data;
     })
+  }
+  searchRecord = new FormGroup({
+    search_text: new FormControl('',[Validators.required]),
+  });
+  get search_text(){
+    return this.searchRecord.get("search_text");
+  }
+  searchRecords(data:any){
+    console.log("Search Data : ",data);
+    this.getAllDataService.searchData(data).subscribe((res)=>{
+      console.warn(res);
+      this.allData=res;
+    });
   }
   deleteDailyRecordData(id:any){
     if(confirm("Are you sure to delete this record")) {

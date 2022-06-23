@@ -19,4 +19,10 @@ export class GetAllDailyDataService {
   updateRemainingFeeData(data:any){
     return this.http.post(environment.apiURL+"updateRemainingFeeRecord",data);
   }
+  searchData(data:any){
+    return this.http.post(environment.apiURL+"searchRecord",data);
+  }
+  searchRemainingData(data:any){
+    return this.http.post(environment.apiURL+"searchRemainingRecord",data);
+  }
 }
